@@ -29,7 +29,7 @@ namespace crmguruapp.Models
         [JsonProperty("region")]
         public string Region { get; set; }
 
-        public string GetInfo => $"Имя: {Name} | Код: {Code} | Столица: {Capital} | Площадь: {Area} | " +
+        public string GetInfo => $"Название: {Name} | Код: {Code} | Столица: {Capital} | Площадь: {Area} | " +
                 $"Население: {Population} | Регион: {Region}";
     }
 }

@@ -49,7 +49,7 @@
             this.CountryListBox.ItemHeight = 16;
             this.CountryListBox.Location = new System.Drawing.Point(-1, 2);
             this.CountryListBox.Name = "CountryListBox";
-            this.CountryListBox.Size = new System.Drawing.Size(800, 340);
+            this.CountryListBox.Size = new System.Drawing.Size(997, 340);
             this.CountryListBox.TabIndex = 1;
             // 
             // getCountryFromBDbutton
@@ -66,7 +66,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(998, 450);
             this.Controls.Add(this.getCountryFromBDbutton);
             this.Controls.Add(this.CountryListBox);
             this.Controls.Add(this.ShowCountryButton);
