@@ -8,7 +8,7 @@ namespace crmguruapp.DAL
 {
     public static class DAL
     {
-        public static readonly string ConnectionString = "Data Source=DESKTOP-L8TF1KI;Initial Catalog=test;Integrated Security=True";
+        public static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         private const string InsertCountrySp = "InsertCountry";
         private const string GetCountriesSp = "GetCountry";
         public static bool InsertCity(string Name, string Code, string Capital, double Area,
