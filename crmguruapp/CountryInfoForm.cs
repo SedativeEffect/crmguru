@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using crmguruapp.Models;
-using crmguruapp.DAL;
-using System.Threading;
-using NLog;
+
 namespace crmguruapp
 {
     public partial class CountryInfoForm : Form
