@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using crmguruapp.Models;
 using crmguruapp.DAL;
 using System.Threading;
-
+using NLog;
 namespace crmguruapp
 {
     public partial class CountryInfoForm : Form
@@ -45,24 +45,36 @@ namespace crmguruapp
             if (AddToBD(country))
             {
                 MessageBox.Show("Страна сохранена");
+                DAL.DAL.logger.Info($"Страна {country.Name} добавлена в БД");
             }
             else
+            {
                 MessageBox.Show("Ошибка сохранения");
+                DAL.DAL.logger.Warn($"Не получилось добавить {country.Name} в БД");
+            }
         }
 
         private async Task<Country> SendQueryToApi(string field)
         {
-            using (HttpClient httpClient = new HttpClient())
+            try
             {
-                string request = $"https://restcountries.eu/rest/v2/name/{field}";
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(request);
-                if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+                using (HttpClient httpClient = new HttpClient())
                 {
-                    string responseBody = await httpResponseMessage.Content.ReadAsStringAsync();
+                    string request = $"https://restcountries.eu/rest/v2/name/{field}";
+                    HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(request);
+                    if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string responseBody = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                    List<Country> country = JsonConvert.DeserializeObject<List<Country>>(responseBody);
-                    return country?.FirstOrDefault();
+                        List<Country> country = JsonConvert.DeserializeObject<List<Country>>(responseBody);
+                        return country?.FirstOrDefault();
+                    }
+                    return null;
                 }
+            }
+            catch (HttpRequestException ex)
+            {
+                DAL.DAL.logger.Error(ex, "Ошибка при обращении к API");
                 return null;
             }
         }
